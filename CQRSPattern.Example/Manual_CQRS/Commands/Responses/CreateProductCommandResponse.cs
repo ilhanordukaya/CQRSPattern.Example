@@ -2,7 +2,7 @@
 {
 	public class CreateProductCommandResponse
 	{
-        public bool IsSucces { get; set; }
+        public bool IsSuccess { get; set; }
         public Guid ProductId { get; set; }
     }
 }

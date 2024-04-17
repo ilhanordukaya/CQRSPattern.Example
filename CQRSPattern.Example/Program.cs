@@ -1,5 +1,6 @@
 using CQRSPattern.Example.Manual_CQRS.Handlers.CommandHandlers;
 using CQRSPattern.Example.Manual_CQRS.Handlers.QueryHandlers;
+using CQRSPattern.Example.Modals;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,11 +8,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+#region Manual CQRS
 builder.Services.AddSingleton<CreateProductCommandHandler>()
 		.AddSingleton<DeleteProductCommandHandler>()
 		.AddSingleton<GetAllProductQueryHandler>()
 		.AddSingleton<GetByIdProductQueryHandler>();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+#endregion
+#region MediatR CQRS
+builder.Services.AddMediatR(conf => conf.RegisterServicesFromAssembly(typeof(ApplicationDbContext).Assembly));
+#endregion// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

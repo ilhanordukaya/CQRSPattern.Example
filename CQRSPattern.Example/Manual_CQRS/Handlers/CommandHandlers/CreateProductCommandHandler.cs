@@ -24,7 +24,7 @@ namespace CQRSPattern.Example.Manual_CQRS.Handlers.CommandHandlers
 			return new CreateProductCommandResponse
 			{
 				ProductId = id,
-				IsSucces=true,
+				IsSuccess=true,
 			};
 		}
 	}
